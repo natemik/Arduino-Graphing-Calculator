@@ -1,0 +1,87 @@
+Name: Nathan Mikhail, Matthew Cunard
+ID #: 1544835, 1538365
+CMPUT 275 Win19
+Final Project - Graphing Calculator
+
+This project is a server-client arduino implented graphing calculator.
+
+There are two modes:
+- Blue Calculator:
+    This acts as a basic calculator. Mathematical expressions can be evaluated by using the touchscreen connected to the arduino which includes trig functions,  proper BEDMAS, using the previous answer as a variable, and setting the 'X' variable to a desired value.
+- Green Calculator:
+    This mode acts as input for a function to be graphed. Initially, the upper and lower x bound is prompted to be inputted followed by the equals sign, then the desired function can be entered, also followed by the equals sign. Data transfer begins after the mode switching button is pressed, and moments after this is done, the screen chages to a graph where the function is displayed.
+
+
+Makefile Targets:
+-$(PROGRAM): compiles all files into a program
+-main.o: compiles main.cpp
+-shuning.o: compiles the shunting algorithm
+-serialport.o: compiles the serialport
+-clear: removes all .o and executable files
+
+Running Instruction:
+
+Client:
+- Within the Client directory, upload the program to the arduino using "make upload".
+- With the server running,  mathematical expressions entered into the blue screen calculator will return an answer after the equals sign is pressed.
+- Use the "ANS" button to use the previous answer as a variable
+- To set "x" to a value, press "SET X" followed by a value
+- Use the "plus minus" sign to negate a post entered value
+- USE THE BUTTON TO SWITCH TO THE FUNCTION MODE
+- In the green screen mode, a bound is prompted to be entered for the function to be graphed.
+- A function is then able to be entered followed by the equals sign.
+- After the equals sign is entered, press the mode switch button and wait for data transfer
+- A graph of the inputted function will now displayed and the button is able to pressed again to return to the initial calculator mode
+
+Server:
+- Within the Server directory, build the executable using the "make" command
+- Run the program using the command "./calculator"
+
+
+Included Files:
+
+SERVER
+-main.cpp
+-serialport.cpp
+-serialport.h
+-shunting.cpp
+-shunting.h
+-Makefile
+
+CLIENT
+-main.cpp
+-Makefile
+
+Code Used:
+-We sued the following code for psedudocode for the shunting yard algoritm
+    *https://www.geeksforgeeks.org/expression-evaluation/
+
+Notes:
+- The use of 2 unary operators next to eachother must be seperated by parentheses.
+- Division by zero is handled in the calculator by displaying "inf".
+- When graphing, a value that approaches infinity will have a line going stright up. An example of this is when graphing sin(x)/cos(x), there will be a line that jumps to the maximum possible value every 90 degrees.
+
+Accessories and Wiring:
+
+ACCESSORIES
+-Arduino MEGA
+-OLED Display
+-Button
+-PC
+
+WIRING
+    Display Pin     Arduino Mega Pin
+    1 GND           BB GND bus
+    2 Vin           BB Vcc (+ive) bus
+
+    4 CLK           Pin 52
+    5 MISO          Pin 50
+    6 MOSI          Pin 51
+    7 CS            Pin 10
+    8 D/C           Pin 9
+
+    19 CCS          Pin 6
+
+BUTTON
+    One side        Pin 2
+    Other side      GND
